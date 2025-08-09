@@ -1,0 +1,301 @@
+{
+  "info": {
+    "name": "NTT Banca - Microservicios (Cliente/Persona & Cuenta/Movimiento)",
+    "_postman_id": "b33b7d22-0b7a-4e54-9c2d-nttbanca",
+    "description": "Colección de endpoints para los microservicios Cliente-Persona-MS (8081) y Cuenta-Movimiento-MS (8082).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exported_at": "2025-08-09T03:37:47.498834Z"
+  },
+  "item": [
+    {
+      "name": "Cliente-Persona-MS",
+      "item": [
+        {
+          "name": "Crear Cliente",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlA}}/clientes",
+              "host": [
+                "{{baseUrlA}}"
+              ],
+              "path": [
+                "clientes"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Carlos\",\n  \"contrasena\": \"carlos123\",\n  \"genero\": \"Masculino\",\n  \"edad\": 25,\n  \"identificacion\": \"1234567890\",\n  \"estado\": true,\n  \"direccion\": \"Quito\",\n  \"telefono\": \"0987654321\"\n}"
+            },
+            "description": "Crea un cliente nuevo."
+          },
+          "response": []
+        },
+        {
+          "name": "Listar Clientes",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrlA}}/clientes",
+              "host": [
+                "{{baseUrlA}}"
+              ],
+              "path": [
+                "clientes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Cliente por ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrlA}}/clientes/{{clienteId}}",
+              "host": [
+                "{{baseUrlA}}"
+              ],
+              "path": [
+                "clientes",
+                "{{clienteId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar Cliente",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlA}}/clientes/{{clienteId}}",
+              "host": [
+                "{{baseUrlA}}"
+              ],
+              "path": [
+                "clientes",
+                "{{clienteId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Carlos Díaz\",\n  \"contrasena\": \"carlos123_mod\",\n  \"genero\": \"Masculino\",\n  \"edad\": 26,\n  \"identificacion\": \"1234567890\",\n  \"estado\": true,\n  \"direccion\": \"Quito Norte\",\n  \"telefono\": \"0987000000\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar (Soft Delete) Cliente",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrlA}}/clientes/{{clienteId}}",
+              "host": [
+                "{{baseUrlA}}"
+              ],
+              "path": [
+                "clientes",
+                "{{clienteId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Cuenta-Movimiento-MS",
+      "item": [
+        {
+          "name": "Crear Cuenta",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlB}}/cuentas",
+              "host": [
+                "{{baseUrlB}}"
+              ],
+              "path": [
+                "cuentas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numeroCuenta\": \"123-001\",\n  \"tipo\": \"AHORROS\",\n  \"saldoInicial\": 1000.0,\n  \"estado\": true,\n  \"idCliente\": 1\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Cuenta por ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrlB}}/cuentas/{{cuentaId}}",
+              "host": [
+                "{{baseUrlB}}"
+              ],
+              "path": [
+                "cuentas",
+                "{{cuentaId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Registrar Movimiento - Depósito",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlB}}/movimientos",
+              "host": [
+                "{{baseUrlB}}"
+              ],
+              "path": [
+                "movimientos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idCuenta\": 1,\n  \"tipo\": \"DEPOSITO\",\n  \"monto\": 250.0\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Registrar Movimiento - Retiro",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlB}}/movimientos",
+              "host": [
+                "{{baseUrlB}}"
+              ],
+              "path": [
+                "movimientos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idCuenta\": 1,\n  \"tipo\": \"RETIRO\",\n  \"monto\": 300.0\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar Movimientos por Cuenta",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrlB}}/movimientos/cuenta/{{cuentaId}}?desde={{yyyyMMdd}}&hasta={{yyyyMMdd}}",
+              "host": [
+                "{{baseUrlB}}"
+              ],
+              "path": [
+                "movimientos",
+                "cuenta",
+                "{{cuentaId}}"
+              ],
+              "query": [
+                {
+                  "key": "desde",
+                  "value": "{{yyyyMMdd}}"
+                },
+                {
+                  "key": "hasta",
+                  "value": "{{yyyyMMdd}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reporte por Cliente (rango de fechas)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrlB}}/reportes/{{idCliente}}?desde={{yyyyMMdd}}&hasta={{yyyyMMdd}}",
+              "host": [
+                "{{baseUrlB}}"
+              ],
+              "path": [
+                "reportes",
+                "{{idCliente}}"
+              ],
+              "query": [
+                {
+                  "key": "desde",
+                  "value": "{{yyyyMMdd}}"
+                },
+                {
+                  "key": "hasta",
+                  "value": "{{yyyyMMdd}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrlA",
+      "value": "http://localhost:8081"
+    },
+    {
+      "key": "baseUrlB",
+      "value": "http://localhost:8082"
+    },
+    {
+      "key": "clienteId",
+      "value": "1"
+    },
+    {
+      "key": "cuentaId",
+      "value": "1"
+    },
+    {
+      "key": "idCliente",
+      "value": "1"
+    },
+    {
+      "key": "yyyyMMdd",
+      "value": "2025-08-01"
+    }
+  ]
+}
